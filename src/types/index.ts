@@ -8,4 +8,12 @@ export interface Recipe {
   nutrition: { calories: number; fat: number; carbs: number; protein: number };
 }
 
-type AIResponse = Recipe | "Invalid user input";
+export interface RecipeRequest {
+  prompt: string;
+}
+
+export interface APIResponse<T> {
+  data?: T;
+  error?: string;
+  success: boolean;
+}
