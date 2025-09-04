@@ -5,7 +5,7 @@ export interface Recipe {
   ingredients: string[];
   cookTime: number;
   prepTime: number;
-  nutrition: [{ calories: number }, { fat: number }, { carbs: number }, { protein: number }];
+  nutrition: { calories: number; fat: number; carbs: number; protein: number };
 }
 
 type AIResponse = Recipe | "Invalid user input";

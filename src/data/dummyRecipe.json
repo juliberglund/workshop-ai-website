@@ -28,5 +28,5 @@
   ],
   "cookTime": 20,
   "prepTime": 25,
-  "nutrition": [{ "calories": 250 }, { "fat": 6 }, { "carbs": 42 }, { "protein": 5 }]
+  "nutrition": { "calories": 250, "fat": 6, "carbs": 42, "protein": 5 }
 }
