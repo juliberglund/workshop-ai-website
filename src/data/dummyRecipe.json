@@ -1,0 +1,32 @@
+{
+  "name": "Simple Sushi Rolls",
+  "description": "A beginner-friendly sushi roll with fresh vegetables and seasoned rice wrapped in nori.",
+  "instructions": [
+    "Rinse the sushi rice under cold water until the water runs clear.",
+    "Cook the rice according to package instructions, then let it cool slightly.",
+    "Mix rice vinegar, sugar, and salt into the warm rice to season it.",
+    "Place a sheet of nori on a bamboo sushi mat, shiny side down.",
+    "Spread a thin layer of seasoned rice evenly over the nori, leaving about 2 cm at the top edge.",
+    "Arrange cucumber, avocado, and carrots in a line across the center of the rice.",
+    "Using the mat, tightly roll the sushi away from you, sealing the edge with a bit of water.",
+    "Slice the roll into 6–8 pieces with a sharp knife.",
+    "Serve with soy sauce, wasabi, and pickled ginger."
+  ],
+  "ingredients": [
+    "2 cups sushi rice",
+    "2 1/2 cups water",
+    "1/4 cup rice vinegar",
+    "2 tbsp sugar",
+    "1 tsp salt",
+    "4 sheets nori (seaweed)",
+    "1 cucumber (julienned)",
+    "1 avocado (sliced)",
+    "1 carrot (julienned)",
+    "Soy sauce (for dipping)",
+    "Wasabi (optional)",
+    "Pickled ginger (optional)"
+  ],
+  "cookTime": 20,
+  "prepTime": 25,
+  "nutrition": [{ "calories": 250 }, { "fat": 6 }, { "carbs": 42 }, { "protein": 5 }]
+}
