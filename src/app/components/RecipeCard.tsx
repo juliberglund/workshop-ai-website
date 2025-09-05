@@ -30,7 +30,7 @@ export default function RecipeCard() {
               placeholder="Type of food (e.g. sushi, pasta...)"
               className="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400"
             />
-            <button className="bg-cyan-700 text-white font-semibold px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+            <button className="bg-cyan-800 text-white font-semibold px-6 py-2 rounded-lg hover:bg-cyan-600 transition">
               Generate
             </button>
           </div>
@@ -62,6 +62,18 @@ export default function RecipeCard() {
               Preparation Time
             </h2>
             <p>{recipe.prepTime} min</p>
+            <h2 className="mt-6 text-2xl font-bold mb-2 text-gray-800">
+              Nutrition
+            </h2>
+            <p>
+              calories:{recipe.nutrition.calories}
+              <br />
+              carbs:{recipe.nutrition.carbs}
+              <br />
+              fat:{recipe.nutrition.fat}
+              <br />
+              protein:{recipe.nutrition.protein}.
+            </p>
           </div>
         </div>
       </div>
