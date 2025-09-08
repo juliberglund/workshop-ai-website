@@ -6,6 +6,7 @@ export interface Recipe {
   ingredients: string[];
   cookTime: number;
   prepTime: number;
+  difficulty: "easy" | "medium" | "hard";
   nutrition: { calories: number; fat: number; carbs: number; protein: number };
 }
 

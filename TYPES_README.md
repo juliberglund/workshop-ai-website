@@ -14,6 +14,7 @@ interface Recipe {
   ingredients: string[]; // List of required ingredients
   cookTime: number; // Cooking time in minutes
   prepTime: number; // Preparation time in minutes
+  difficulty: "easy" | "medium" | "hard"; // Difficulty of the recipe
   nutrition: {
     // Nutritional information
     calories: number;

@@ -13,6 +13,9 @@ export function isRecipe(obj: unknown): obj is Recipe {
     Array.isArray(recipe.ingredients) &&
     typeof recipe.cookTime === "number" &&
     typeof recipe.prepTime === "number" &&
+    (recipe.difficulty === "easy" ||
+      recipe.difficulty === "medium" ||
+      recipe.difficulty === "hard") &&
     typeof recipe.nutrition === "object" &&
     recipe.nutrition !== null &&
     typeof recipe.nutrition.calories === "number" &&
