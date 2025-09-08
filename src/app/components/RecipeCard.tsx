@@ -1,39 +1,76 @@
+"use client";
+
+import { useState } from "react";
 import { Recipe } from "@/types";
 import dummyRecipe from "@/data/dummyRecipe.json";
-import { Lora } from "next/font/google";
+import { Input } from "./iu/input";
+import { Select } from "./iu/select";
+import { TextGif } from "./iu/text-gif";
+import { isRecipe } from "@/types/validation";
+
+if (!isRecipe(dummyRecipe)) {
+  throw new Error("Dummy recipe data is invalid");
+}
 
 const recipe: Recipe = dummyRecipe;
 
 export default function RecipeCard() {
+  const [foodType, setFoodType] = useState("");
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const selectOptions = [
+    { label: "Select your level", value: "" },
+    { label: "I am a beguinner", value: "easy" },
+    { label: "I am intermidate", value: "medium" },
+    { label: "I am advanced", value: "hard" },
+  ];
+  const gifUrls = [
+    "https://media.giphy.com/media/3zvbrvbRe7wxBofOBI/giphy.gif",
+    "https://media.giphy.com/media/fnglNFjBGiyAFtm6ke/giphy.gif",
+  ];
   return (
     <div className="relative min-h-screen">
       <div className="absolute inset-0">
         <img
-          src="/background.jpg"
+          src="/varios-vegetales-.jpg"
           alt="background"
-          className="w-full h-full object-cover opacity-20"
+          className="w-full h-full object-cover opacity-80"
         />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center p-10">
-        <div className="w-full max-w-3xl bg-white shadow-lg rounded-2xl p-8 text-center mb-10">
-          <h1 className="text-red-400 text-5xl font-bold mb-6">
-            "Foody Goody"
-          </h1>
+      <div className="relative z-10 flex flex-col items-center p-10 space-y-10">
+        <div className="w-full max-w-3xl bg-white shadow-lg rounded-2xl p-8 text-center">
+          <TextGif
+            gifUrl={gifUrls[0]}
+            text="Foody Goody"
+            size="xxl"
+            weight="medium"
+          />
           <p className="text-2xl font-bold text-red-200 pb-4">
             your recipe generator
           </p>
 
-          <div className="flex items-center justify-center gap-4">
-            <input
-              type="text"
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
+            <Input
+              value={foodType}
+              onChange={(e) => setFoodType(e.target.value)}
               placeholder="Type of food (e.g. sushi, pasta...)"
-              className="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400"
+              className="flex-1"
             />
+
+            <Select
+              options={selectOptions}
+              value={selectedOption}
+              onChange={(e) => setSelectedOption(e.target.value)}
+              className="flex-1 text-stone-400"
+            />
+
             <button className="bg-cyan-800 text-white font-semibold px-6 py-2 rounded-lg hover:bg-cyan-600 transition">
               Generate
             </button>
           </div>
+
+          <div className="mt-6"></div>
         </div>
 
         <div className="w-full max-w-3xl bg-white shadow-lg rounded-2xl overflow-hidden border border-gray-200">
@@ -43,15 +80,19 @@ export default function RecipeCard() {
             </h1>
             <p className="pb-4">{recipe.description}</p>
             <img
-              src="/sushi2.jpeg"
+              src="/otro-sushi.avif"
               alt={recipe.name}
-              className="pl-40 w-auto h-80 object-cover object-center"
+              className="w-full h-80 object-cover object-center rounded-lg mb-4"
             />
 
             <h2 className="mt-6 text-2xl font-bold mb-2 text-gray-800">
               Ingredients
             </h2>
-            <p>{recipe.ingredients}</p>
+            <ul className="list-disc pl-5">
+              {recipe.ingredients.map((ing, idx) => (
+                <li key={idx}>{ing}</li>
+              ))}
+            </ul>
 
             <h2 className="mt-6 text-2xl font-bold mb-2 text-gray-800">
               Cooking time
@@ -62,17 +103,15 @@ export default function RecipeCard() {
               Preparation Time
             </h2>
             <p>{recipe.prepTime} min</p>
+
             <h2 className="mt-6 text-2xl font-bold mb-2 text-gray-800">
               Nutrition
             </h2>
             <p>
-              calories:{recipe.nutrition.calories}
-              <br />
-              carbs:{recipe.nutrition.carbs}
-              <br />
-              fat:{recipe.nutrition.fat}
-              <br />
-              protein:{recipe.nutrition.protein}.
+              Calories: {recipe.nutrition.calories} <br />
+              Carbs: {recipe.nutrition.carbs} <br />
+              Fat: {recipe.nutrition.fat} <br />
+              Protein: {recipe.nutrition.protein}
             </p>
           </div>
         </div>
