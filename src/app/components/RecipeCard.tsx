@@ -39,7 +39,7 @@ export default function RecipeCard() {
       </div>
 
       <div className="relative z-10 flex flex-col items-center p-10 space-y-10">
-        <div className="w-full max-w-3xl bg-white shadow-lg rounded-2xl p-8 text-center">
+        <div className="w-full max-w-3xl bg-white shadow-lg rounded-2xl p-8 mt-10 text-center">
           <TextGif
             gifUrl={gifUrls[0]}
             text="Foody Goody"
