@@ -46,7 +46,7 @@ export default function RecipeCard() {
             size="xxl"
             weight="medium"
           />
-          <p className="text-2xl font-bold text-red-200 pb-4">
+          <p className="text-2xl font-bold text-orange-400 opacity-70 pb-4">
             your recipe generator
           </p>
 
