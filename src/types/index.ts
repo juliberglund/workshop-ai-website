@@ -1,3 +1,4 @@
+// Core recipe data structure
 export interface Recipe {
   name: string;
   description: string;
@@ -8,10 +9,12 @@ export interface Recipe {
   nutrition: { calories: number; fat: number; carbs: number; protein: number };
 }
 
+// User input sent to AI API
 export interface RecipeRequest {
   prompt: string;
 }
 
+// API response wrapper
 export interface APIResponse<T> {
   data?: T;
   error?: string;
