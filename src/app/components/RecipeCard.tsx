@@ -26,7 +26,10 @@ export default function RecipeCard() {
             alt={recipe.name}
             className="w-full h-80 object-cover object-center rounded-lg mb-4"
           />
-
+          <h2 className="mt-6 text-2xl font-bold mb-2 text-gray-800">
+            Difficulty
+          </h2>
+          <p>{recipe.difficulty}</p>
           <h2 className="mt-6 text-2xl font-bold mb-2 text-gray-800">
             Ingredients
           </h2>
