@@ -28,6 +28,6 @@
   ],
   "cookTime": 20,
   "prepTime": 25,
-  "difficulty": "medium",
+  "difficulty": "beginner",
   "nutrition": { "calories": 250, "fat": 6, "carbs": 42, "protein": 5 }
 }
