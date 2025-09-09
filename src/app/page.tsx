@@ -25,8 +25,8 @@ export default function Home() {
     "https://media.giphy.com/media/fnglNFjBGiyAFtm6ke/giphy.gif",
   ];
   return (
-    <div className="relative min-h-screen">
-      <div className="absolute inset-0">
+    <div className="relative min-h-screen w-full h-full">
+      <div className="absolute inset-0 w-full h-full">
         <img
           src="/vegetables-.jpg"
           alt="background"
