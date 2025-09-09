@@ -11,7 +11,10 @@ import { isRecipe } from "@/types/validation";
 
 export default function Home() {
   const [prompt, setPrompt] = useState("");
-  const [response, setResponse] = useState<APIResponse<Recipe> | null>(null);
+
+  
+  // useState for Recipe
+  // useState for Error
 
   async function fetchData() {
     const res = await fetch("http//localhost:3000/api/recipes", {
