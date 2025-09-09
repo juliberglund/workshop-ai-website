@@ -3,19 +3,28 @@
 import RecipeCard from "./components/RecipeCard";
 
 import { useState } from "react";
-import { Recipe } from "@/types";
+import { APIResponse, Recipe } from "@/types";
 import dummyRecipe from "@/data/dummyRecipe.json";
 import { Input } from "./components/iu/input";
 import { TextGif } from "./components/iu/text-gif";
 import { isRecipe } from "@/types/validation";
 
 export default function Home() {
+  const [prompt, setPrompt] = useState("");
+  const [response, setResponse] = useState<APIResponse<Recipe> | null>(null);
+
+  async function fetchData() {
+    const res = await fetch("http//localhost:3000/api/recipes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: prompt,
+    });
+    console.log("res:", res);
+    // setResponse(res);
+  }
+
   const [foodType, setFoodType] = useState("");
 
-  const gifUrls = [
-    "https://media.giphy.com/media/3zvbrvbRe7wxBofOBI/giphy.gif",
-    "https://media.giphy.com/media/fnglNFjBGiyAFtm6ke/giphy.gif",
-  ];
   return (
     <div className="relative min-h-screen w-full h-full">
       <div className="absolute inset-0 w-full h-full">
@@ -30,7 +39,7 @@ export default function Home() {
         <div className="w-full max-w-3xl bg-white shadow-lg rounded-2xl p-8 mt-10 text-center">
           <TextGif
             className="p-1"
-            gifUrl={gifUrls[0]}
+            gifUrl="https://media.giphy.com/media/3zvbrvbRe7wxBofOBI/giphy.gif"
             text="Foody Goody"
             size="xxl"
             weight="medium"
