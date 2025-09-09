@@ -6,20 +6,12 @@ import { useState } from "react";
 import { Recipe } from "@/types";
 import dummyRecipe from "@/data/dummyRecipe.json";
 import { Input } from "./components/iu/input";
-import { Select } from "./components/iu/select";
 import { TextGif } from "./components/iu/text-gif";
 import { isRecipe } from "@/types/validation";
 
 export default function Home() {
   const [foodType, setFoodType] = useState("");
-  const [selectedOption, setSelectedOption] = useState("");
 
-  const selectOptions = [
-    { label: "Select your level", value: "" },
-    { label: "I am a beginner", value: "easy" },
-    { label: "I am intermediate", value: "medium" },
-    { label: "I am advanced", value: "hard" },
-  ];
   const gifUrls = [
     "https://media.giphy.com/media/3zvbrvbRe7wxBofOBI/giphy.gif",
     "https://media.giphy.com/media/fnglNFjBGiyAFtm6ke/giphy.gif",
@@ -53,13 +45,6 @@ export default function Home() {
               onChange={(e) => setFoodType(e.target.value)}
               placeholder="Type of food (e.g. sushi, pasta...)"
               className="flex-1"
-            />
-
-            <Select
-              options={selectOptions}
-              value={selectedOption}
-              onChange={(e) => setSelectedOption(e.target.value)}
-              className="flex-1 text-stone-400"
             />
 
             <button className="bg-black text-white font-semibold px-6 py-2 rounded-lg hover:bg-fuchsia-700 transition">
