@@ -94,3 +94,27 @@ if (response.success && response.data) {
 ## Test Data
 
 Dummy recipe data is available in `/src/data/dummyRecipe.json` for UI development and testing.
+
+## Testing type guards in the browser
+
+To easily verify that `isRecipe` works correctly, there is a dedicated test page:
+
+1. Start the development server:
+   ```bash
+   npm run dev
+   ```
+2. Go to [http://localhost:3000/typeguard-test](http://localhost:3000/typeguard-test) in your browser.
+3. The page displays both a valid and an invalid recipe, and shows whether `isRecipe` returns `true` or `false` for each.
+
+Example code (located in `/src/app/typeguard-test/page.tsx`):
+
+```tsx
+import { isRecipe } from "@/types/validation";
+import dummyRecipe from "@/data/dummyRecipe.json";
+
+const validRecipe = dummyRecipe;
+const invalidRecipe = { foo: "bar" };
+
+isRecipe(validRecipe); // true
+isRecipe(invalidRecipe);
+```

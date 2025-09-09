@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Foody Goody – AI Recipe Generator
 
-## Getting Started
+Foody Goody is a web app that generates cooking recipes based on your input and skill level.  
+You can enter a type of food and select your experience level, and the app will suggest a recipe using AI or test data.
 
-First, run the development server:
+## Demo script – How to test the app
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Follow these steps to demo and test the full flow of the project:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. **Start the development server**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   ```bash
+   npm run dev
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   or
 
-## Learn More
+   ```bash
+   yarn dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Open the app in your browser**  
+   Go to [http://localhost:3000](http://localhost:3000)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Try generating a recipe**
+   - Enter a type of food (e.g. `pasta`, `sushi`, etc.) in the input field.
+   - Select your cooking level (e.g. Beginner, Intermediate, Advanced).
+   - Click the **Generate** button.
+   - The app will display a recipe card (using either AI or dummy data).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. **Test error handling**
+   - Try submitting the form with empty fields or invalid input.
+   - The app should show an error message or handle the error gracefully.
 
-## Deploy on Vercel
+5. **Test type guard validation**
+   - Visit [http://localhost:3000/typeguard-test](http://localhost:3000/typeguard-test)
+   - This page shows how the `isRecipe` type guard works with both valid and invalid data.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+6. **Test with dummy data**
+   - The app uses `/src/data/dummyRecipe.json` for development and testing.
+   - You can modify this file to test how the UI responds to different recipe data.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+**Tip:**  
+If you want to test API integration or error states, you can temporarily break the API route or modify the dummy data to simulate errors.
