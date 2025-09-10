@@ -1,31 +1,47 @@
 "use client";
 
 import RecipeCard from "./components/RecipeCard";
-
 import { useState } from "react";
 import { APIResponse, Recipe } from "@/types";
-import dummyRecipe from "@/data/dummyRecipe.json";
 import { Input } from "./components/iu/input";
 import { TextGif } from "./components/iu/text-gif";
-import { isRecipe } from "@/types/validation";
 
 export default function Home() {
   const [foodType, setFoodType] = useState("");
   const [recipe, setRecipe] = useState<Recipe | null>(null);
-
-  //we need useState for Error and Loading
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function fetchData() {
-    const res = await fetch("http://localhost:3000/api/recipes", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt: foodType }),
-    });
-    const data: APIResponse<Recipe> = await res.json();
-    return data;
-  }
+    setLoading(true);
+    setError(null);
+    setRecipe(null); // 🧹 limpiar receta anterior
 
-  // here we need the messages if data success or not
+    try {
+      const res = await fetch("/api/recipes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: foodType }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Request failed with status ${res.status}`);
+      }
+
+      const data: APIResponse<Recipe> = await res.json();
+
+      if (data.success && data.data) {
+        setRecipe(data.data);
+      } else {
+        setError(data.error || "Could not fetch recipe");
+      }
+    } catch (err: any) {
+      console.error("fetchData error:", err.message);
+      setError("Something went wrong while fetching the recipe");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <div className="relative min-h-screen w-full h-full">
@@ -58,17 +74,19 @@ export default function Home() {
               className="flex-1"
             />
 
-            <button className="bg-black text-white font-semibold px-6 py-2 rounded-lg hover:bg-fuchsia-700 transition"
-            
-            onClick={fetchData}>
-              Generate
+            <button
+              className="bg-black text-white font-semibold px-6 py-2 rounded-lg hover:bg-fuchsia-700 transition disabled:opacity-50"
+              onClick={fetchData}
+              disabled={loading}
+            >
+              {loading ? "Generating..." : "Generate"}
             </button>
           </div>
 
-          <div className="mt-6"></div>
+          {error && <p className="text-red-500 mt-4">{error}</p>}
         </div>
-        {recipe && <RecipeCard recipe={recipe} />}
 
+        {recipe && <RecipeCard recipe={recipe} />}
       </div>
     </div>
   );

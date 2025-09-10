@@ -9,11 +9,11 @@ export default function RecipeCard({ recipe }: { recipe: Recipe }) {
       <div className="p-12">
         <h1 className="text-3xl font-bold mb-2 text-gray-800">{recipe.name}</h1>
         <p className="pb-4">{recipe.description}</p>
-        <img
-          src="/sushi.avif"
+        {/* <img
+          src=""
           alt={recipe.name}
           className="w-full h-80 object-cover object-center rounded-lg mb-4"
-        />
+        /> */}
         <h2 className="mt-6 text-2xl font-bold mb-2 text-gray-800">
           Difficulty
         </h2>
