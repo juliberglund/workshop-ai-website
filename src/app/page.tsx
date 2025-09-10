@@ -10,23 +10,22 @@ import { TextGif } from "./components/iu/text-gif";
 import { isRecipe } from "@/types/validation";
 
 export default function Home() {
-  const [prompt, setPrompt] = useState("");
+  const [foodType, setFoodType] = useState("");
+  const [recipe, setRecipe] = useState<Recipe | null>(null);
 
-  
-  // useState for Recipe
-  // useState for Error
+  //we need useState for Error and Loading
 
   async function fetchData() {
-    const res = await fetch("http//localhost:3000/api/recipes", {
+    const res = await fetch("http://localhost:3000/api/recipes", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: prompt,
+      body: JSON.stringify({ prompt: foodType }),
     });
-    console.log("res:", res);
-    // setResponse(res);
+    const data: APIResponse<Recipe> = await res.json();
+    return data;
   }
 
-  const [foodType, setFoodType] = useState("");
+  // here we need the messages if data success or not
 
   return (
     <div className="relative min-h-screen w-full h-full">
@@ -59,14 +58,17 @@ export default function Home() {
               className="flex-1"
             />
 
-            <button className="bg-black text-white font-semibold px-6 py-2 rounded-lg hover:bg-fuchsia-700 transition">
+            <button className="bg-black text-white font-semibold px-6 py-2 rounded-lg hover:bg-fuchsia-700 transition"
+            
+            onClick={fetchData}>
               Generate
             </button>
           </div>
 
           <div className="mt-6"></div>
         </div>
-        <RecipeCard />
+        {recipe && <RecipeCard recipe={recipe} />}
+
       </div>
     </div>
   );

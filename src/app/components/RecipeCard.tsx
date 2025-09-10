@@ -1,17 +1,9 @@
 "use client";
 
 import { Recipe } from "@/types";
-import dummyRecipe from "@/data/dummyRecipe.json";
-
 import { isRecipe } from "@/types/validation";
 
-if (!isRecipe(dummyRecipe)) {
-  throw new Error("Dummy recipe data is invalid");
-}
-
-const recipe: Recipe = dummyRecipe;
-
-export default function RecipeCard() {
+export default function RecipeCard({ recipe }: { recipe: Recipe }) {
   return (
     <div className="w-full max-w-3xl bg-white shadow-lg rounded-2xl overflow-hidden border border-gray-200">
       <div className="p-12">
