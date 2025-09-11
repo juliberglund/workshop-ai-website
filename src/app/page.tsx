@@ -17,7 +17,7 @@ export default function Home() {
   async function fetchData() {
     setLoading(true);
     setError(null);
-    setRecipe(null); // 🧹 limpiar receta anterior
+    setRecipe(null); 
 
     try {
       const res = await fetch("/api/recipes", {
@@ -78,7 +78,7 @@ export default function Home() {
             />
 
             <button
-              className="bg-black text-white font-semibold px-6 py-2 rounded-lg hover:bg-fuchsia-700 transition disabled:opacity-50"
+              className="bg-black text-white font-semibold px-6 py-2 rounded-lg hover:bg-fuchsia-700 transition disabled"
               onClick={fetchData}
               disabled={loading || !foodType}
             >
