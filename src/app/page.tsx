@@ -60,7 +60,7 @@ export default function Home() {
             gifUrl="https://media.giphy.com/media/3zvbrvbRe7wxBofOBI/giphy.gif"
             text="Foody Goody"
             size="xxl"
-            weight="medium"
+            weight="semi"
           />
           <p className="text-2xl font-bold text-orange-400 opacity-70 pb-4">
             Your Recipe Generator
