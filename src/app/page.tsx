@@ -5,6 +5,8 @@ import { useState } from "react";
 import { APIResponse, Recipe } from "@/types";
 import { Input } from "./components/iu/input";
 import { TextGif } from "./components/iu/text-gif";
+import { Spinner } from "./components/iu/spinner";
+
 
 export default function Home() {
   const [foodType, setFoodType] = useState("");
@@ -72,21 +74,31 @@ export default function Home() {
               onChange={(e) => setFoodType(e.target.value)}
               placeholder="Type of food (e.g. sushi, pasta...)"
               className="flex-1"
+              disabled={loading}
             />
 
             <button
               className="bg-black text-white font-semibold px-6 py-2 rounded-lg hover:bg-fuchsia-700 transition disabled:opacity-50"
               onClick={fetchData}
-              disabled={loading}
+              disabled={loading || !foodType}
             >
               {loading ? "Generating..." : "Generate"}
             </button>
           </div>
 
-          {error && <p className="text-red-500 mt-4">{error}</p>}
+          {loading && (
+            <div className="flex justify-center items-center mt-6">
+              <Spinner />
+              <span className="ml-2 text-fuchsia-700 font-medium">Generating your recipe...</span>
+            </div>
+          )}
+
+          {error && !loading && (
+            <p className="text-red-500 mt-4">{error}</p>
+          )}
         </div>
 
-        {recipe && <RecipeCard recipe={recipe} />}
+        {recipe && !loading && <RecipeCard recipe={recipe} />}
       </div>
     </div>
   );
