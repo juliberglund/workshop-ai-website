@@ -55,6 +55,13 @@ export default function Home() {
         />
       </div>
 
+      <a
+        href="https://www.irene-rubio.com"
+        className="absolute top-4 left-4 z-20 flex items-center gap-2 bg-white/80 hover:bg-white text-gray-800 font-semibold text-sm px-4 py-2 rounded-full shadow transition backdrop-blur-sm"
+      >
+        ← Back to portfolio
+      </a>
+
       <div className="relative z-10 flex flex-col items-center p-10 space-y-10">
         <div className="w-full max-w-3xl bg-white shadow-lg rounded-2xl p-8 mt-10 text-center">
           <TextGif
