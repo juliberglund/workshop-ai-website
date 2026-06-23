@@ -40,15 +40,24 @@ Details:
 Now generate a recipe for: ${body.prompt}
 `;
 
-    const result = await model.generateContent({
-      contents: [
-        {
-          role: "user",
-          parts: [{ text: prompt }],
-        },
-      ],
-    });
-    const text = result.response.text();
+    let text = "";
+    let lastError: any;
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        const result = await model.generateContent({
+          contents: [{ role: "user", parts: [{ text: prompt }] }],
+        });
+        text = result.response.text();
+        break;
+      } catch (err: any) {
+        lastError = err;
+        const isRetryable = err?.status === 429 || err?.status === 503
+          || err?.message?.includes("429") || err?.message?.includes("503")
+          || err?.message?.includes("quota") || err?.message?.includes("high demand");
+        if (!isRetryable || attempt === 3) throw err;
+        await new Promise((r) => setTimeout(r, attempt * 2000));
+      }
+    }
     console.log("AI response:", text);
     let recipe: Recipe;
     try {
